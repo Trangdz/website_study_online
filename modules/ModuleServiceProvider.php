@@ -5,6 +5,7 @@ namespace Modules;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\File;
 use Modules\User\src\Http\Middlewares\DemoMiddleware;
+use Modules\User\src\Commands\TestCommand;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -97,5 +98,17 @@ class ModuleServiceProvider extends ServiceProvider
                 
             }
         }
+
+
+        // //Commands
+        $this->commands([
+            TestCommand::class
+        ]);
+    }
+    
+
+    private function getModules(){
+        return array_map('basename', File::directories(__DIR__));
+        
     }
 }
